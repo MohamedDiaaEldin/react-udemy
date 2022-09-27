@@ -1,20 +1,21 @@
-import ExpenseItem from "./components/ExpenseItem";
-
+import './style/Expenses.css'
+import Expenses from "./components/Expense";
 function App() {  
+
   const expenses = [
     {
       title: "car Insurance",
-      amout: 379,
+      amount: 379,
       date: new Date(2021, 2, 28),
     },
     {
       title: "apple laptop",
-      amout: 10000.5,
+      amount: 10000.5,
       date: new Date(2022, 3, 1),
     },
     {
       title: "smart watch",
-      amout: 600,
+      amount: 600,
       date: new Date(2020, 2, 6),
     },
   ];
@@ -23,9 +24,9 @@ function App() {
   return (
     <div>
       <h2>Let's get started!</h2>
-      {expenses.map((item) => (
-        <ExpenseItem  key={item.title} title={item.title} date={item.date} amount={item.amout} />
-      ))}
+      <div className="expenses">
+        <Expenses expenses={expenses} />
+      </div>
     </div>
   );
 }
