@@ -1,5 +1,7 @@
 import './styles/Expenses.css'
 import Expenses from "./components/expenses/Expense"; 
+import NewExpense from './components/NewExpense/NewExpense';
+
 
 function App() {  
 
@@ -22,9 +24,12 @@ function App() {
   ];
   
 
+  const addExpense = (data)=>{
+    console.log('from appo ', data)
+  }
   return (
     <div>
-      <h2>Let's get started!</h2>
+      <NewExpense addExpense={addExpense}/>
       <div className="expenses">
         <Expenses expenses={expenses} />
       </div>
