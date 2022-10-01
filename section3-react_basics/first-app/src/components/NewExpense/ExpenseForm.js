@@ -1,10 +1,21 @@
 import "../../styles/ExpenseForm.css";
 import { useState } from "react";
 
-const ExpenseForm = ({addExpense}) => {
+const ExpenseForm = ({ addExpense }) => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
+  
+  const sumbitHandler = (event) => {
+    event.preventDefault();
+    const expenseData = {
+      title: title,
+      amount: amount,
+      date: new Date(date),
+    };
+    addExpense(expenseData);
+    clearInputs();
+  };
 
   const titleHandler = (event) => {
     setTitle(event.target.value);
@@ -18,17 +29,6 @@ const ExpenseForm = ({addExpense}) => {
     setDate(event.target.value);
     // console.log(event.target.value)
   };
-  const sumbitHandler = (event) => {
-    event.preventDefault();
-    const expenseData = {
-      title: title,
-      amount: amount,
-      date: new Date(date),
-    };
-    addExpense(expenseData);    
-    clearInputs();
-  };
-
 
   const clearInputs = () => {
     setTitle("");

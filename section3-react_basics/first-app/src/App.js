@@ -1,11 +1,10 @@
-import './styles/Expenses.css'
-import Expenses from "./components/expenses/Expense"; 
-import NewExpense from './components/NewExpense/NewExpense';
+import "./styles/Expenses.css";
+import Expenses from "./components/expenses/Expense";
+import NewExpense from "./components/NewExpense/NewExpense";
+import { useState } from "react";
 
-
-function App() {  
-
-  const expenses = [
+function App() {
+  const [expenses, setExpenses] = useState([
     {
       title: "car Insurance",
       amount: 379,
@@ -21,15 +20,14 @@ function App() {
       amount: 600,
       date: new Date(2020, 2, 6),
     },
-  ];
-  
+  ]);
 
-  const addExpense = (data)=>{
-    console.log('from appo ', data)
-  }
+  const addExpense = (data) => {
+    setExpenses([...expenses, data]);
+  };
   return (
     <div>
-      <NewExpense addExpense={addExpense}/>
+      <NewExpense addExpense={addExpense} />
       <div className="expenses">
         <Expenses expenses={expenses} />
       </div>
