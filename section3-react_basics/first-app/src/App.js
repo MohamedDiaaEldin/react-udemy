@@ -4,6 +4,9 @@ import NewExpense from "./components/NewExpense/NewExpense";
 import { useState } from "react";
 
 function App() {
+
+  const [filterYear, setFilterYear] = useState('2020')
+
   const [expenses, setExpenses] = useState([
     {
       title: "car Insurance",
@@ -22,6 +25,10 @@ function App() {
     },
   ]);
 
+  const filterExpenses = (year) => {
+    setFilterYear(year);
+  };
+
   const addExpense = (data) => {
     setExpenses([...expenses, data]);
   };
@@ -29,7 +36,7 @@ function App() {
     <div>
       <NewExpense addExpense={addExpense} />
       <div className="expenses">
-        <Expenses expenses={expenses} />
+        <Expenses selectedYear={filterYear} filterExpenses={filterExpenses} expenses={expenses} />
       </div>
     </div>
   );

@@ -8,26 +8,27 @@ const ExpenseForm = ({ addExpense }) => {
   
   const sumbitHandler = (event) => {
     event.preventDefault();
+
+    // new expense item
     const expenseData = {
       title: title,
       amount: amount,
       date: new Date(date),
     };
+    // update from app component
     addExpense(expenseData);
+
     clearInputs();
   };
 
   const titleHandler = (event) => {
     setTitle(event.target.value);
-    // console.log(event.target.value)
   };
   const amountHandler = (event) => {
     setAmount(event.target.value);
-    // console.log(event.target.value)
   };
   const dateHandler = (event) => {
     setDate(event.target.value);
-    // console.log(event.target.value)
   };
 
   const clearInputs = () => {
