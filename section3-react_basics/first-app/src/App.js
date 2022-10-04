@@ -1,5 +1,5 @@
 import "./styles/Expenses.css";
-import Expenses from "./components/expenses/Expense";
+import Expenses from "./components/expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 import { useState } from "react";
 
@@ -24,13 +24,7 @@ const dummyExpenses = [
   },
 ];
 function App() {
-
   const [expenses, setExpenses] = useState(dummyExpenses);
-  const [filterYear, setFilterYear] = useState("2020");
-
-  const filterExpenses = (year) => {
-    setFilterYear(year);    
-  };
 
   const addExpense = (data) => {
     // clean way to update state that depends prvious state
@@ -41,8 +35,6 @@ function App() {
       <NewExpense addExpense={addExpense} />
       <div className="expenses">
         <Expenses
-          selectedYear={filterYear}
-          filterExpenses={filterExpenses}
           expenses={expenses}
         />
       </div>

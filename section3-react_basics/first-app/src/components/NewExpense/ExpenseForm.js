@@ -1,11 +1,11 @@
 import "../../styles/ExpenseForm.css";
 import { useState } from "react";
 
-const ExpenseForm = ({ addExpense }) => {
+const ExpenseForm = ({ addExpense, hide }) => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
-  
+
   const sumbitHandler = (event) => {
     event.preventDefault();
 
@@ -19,6 +19,7 @@ const ExpenseForm = ({ addExpense }) => {
     addExpense(expenseData);
 
     clearInputs();
+    hide();
   };
 
   const titleHandler = (event) => {
@@ -36,37 +37,42 @@ const ExpenseForm = ({ addExpense }) => {
     setAmount("");
     setDate("");
   };
-
+  const cancelHandler = () => {
+    hide();
+  };
   return (
-    <form onSubmit={sumbitHandler}>
-      <div className="new-expense__control">
-        <label>Title</label>
-        <input value={title} onChange={titleHandler} type="text" />
-      </div>
-      <div className="new-expense__control">
-        <label>Amount</label>
-        <input
-          value={amount}
-          onChange={amountHandler}
-          type="nubmer"
-          min="0.01"
-          step="0.01"
-        />
-      </div>
-      <div className="new-expense__control">
-        <label>Amount</label>
-        <input
-          value={date}
-          onChange={dateHandler}
-          type="date"
-          min="2019-01-01"
-          max="2019-12-01"
-        />
-      </div>
-      <div className="new-expense__actions">
-        <button type="sumbit">add expense</button>
-      </div>
-    </form>
+    <div className="new-expense">
+      <form onSubmit={sumbitHandler}>
+        <div className="new-expense__control">
+          <label>Title</label>
+          <input value={title} onChange={titleHandler} type="text" />
+        </div>
+        <div className="new-expense__control">
+          <label>Amount</label>
+          <input
+            value={amount}
+            onChange={amountHandler}
+            type="nubmer"
+            min="0.01"
+            step="0.01"
+          />
+        </div>
+        <div className="new-expense__control">
+          <label>Amount</label>
+          <input
+            value={date}
+            onChange={dateHandler}
+            type="date"
+            min="2019-01-01"
+            max="2019-12-01"
+          />
+        </div>
+        <div className="new-expense__actions">
+          <button onClick={hide}>Cancel</button>
+          <button type="sumbit">add expense</button>
+        </div>
+      </form>
+    </div>
   );
 };
 
