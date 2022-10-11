@@ -12,7 +12,7 @@ const ExpenseForm = ({ addExpense, hide }) => {
     // new expense item
     const expenseData = {
       title: title,
-      amount: amount,
+      amount: +amount,
       date: new Date(date),
     };
     // update from app component
@@ -37,9 +37,7 @@ const ExpenseForm = ({ addExpense, hide }) => {
     setAmount("");
     setDate("");
   };
-  const cancelHandler = () => {
-    hide();
-  };
+
   return (
     <div className="new-expense">
       <form onSubmit={sumbitHandler}>
@@ -64,7 +62,7 @@ const ExpenseForm = ({ addExpense, hide }) => {
             onChange={dateHandler}
             type="date"
             min="2019-01-01"
-            max="2019-12-01"
+            max="2022-11-01"
           />
         </div>
         <div className="new-expense__actions">
