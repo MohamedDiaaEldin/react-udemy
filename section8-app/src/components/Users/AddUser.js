@@ -55,6 +55,7 @@ const AddUser = ({ addUser }) => {
           closeErrorModol={closeErrorModol}
         />
       )}
+      
       <Card className={styles.input}>
         <form onSubmit={newUserHandler}>
           <label htmlFor="username">User name</label>
