@@ -1,15 +1,21 @@
 import classes from "./AddUser.module.css";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
-import { useState } from "react";
+// Ref are good while reading but not recommended to update the dom
+import { useState, useRef } from "react"; 
 import ErrorModal from "../UI/ErrorModal";
+
 const AddUser = ({ addNewUser }) => {
-  const [username, setUserName] = useState("");
-  const [age, setAge] = useState("");
+  const usernameInputRef = useRef()
+  const  ageInputRef = useRef()
+
   const [error, setError] = useState(undefined);
 
   const addUserHandler = (event) => {
     event.preventDefault();
+    
+    const username = usernameInputRef.current.value
+    const age = ageInputRef.current.value
 
     if (username.trim().length === 0 || age.trim().length === 0) {
       setError({
@@ -35,15 +41,13 @@ const AddUser = ({ addNewUser }) => {
     setError(null);
   };
   const resetInputs = () => {
-    setUserName("");
-    setAge("");
+    // is ok hear to manipulate the dom but not recommended 
+    // we can use state 
+    // The component became uncontrolled component because we are not relying on React to update  the dom
+    usernameInputRef.current.value = ""
+    ageInputRef.current.value = ""
   };
-  const userNameChangeHandler = (event) => {
-    setUserName(event.target.value);
-  };
-  const ageChangeHandler = (event) => {
-    setAge(event.target.value);
-  };
+  
   return (
     <div>
       {error && (
@@ -58,17 +62,15 @@ const AddUser = ({ addNewUser }) => {
         <form onSubmit={addUserHandler}>
           <label htmlFor="username">User name</label>
           <input
+            ref={usernameInputRef}
             id="username"
-            type="text"
-            onChange={userNameChangeHandler}
-            value={username}
+            type="text"            
           />
           <label htmlFor="age">Age (years)</label>
           <input
+            ref={ageInputRef}
             id="age"
-            type="number"
-            onChange={ageChangeHandler}
-            value={age}
+            type="number"            
           />
           <Button type="sumbit">Add User</Button>
         </form>
