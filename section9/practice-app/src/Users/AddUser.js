@@ -13,7 +13,7 @@ const AddUser = ({ addNewUser }) => {
 
   const addUserHandler = (event) => {
     event.preventDefault();
-    
+   
     const username = usernameInputRef.current.value
     const age = ageInputRef.current.value
 

@@ -7,6 +7,8 @@ import ReactDOM from "react-dom";
 const Backdrop = ({ hideErrorModal }) => {
   return <div className={classes.backdrop} onClick={hideErrorModal} />;
 };
+
+
 const Modal = ({ title, message, hideErrorModal }) => {
   return (
     <Card className={classes.modal}>
