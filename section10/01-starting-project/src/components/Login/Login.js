@@ -12,12 +12,22 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    console.log('yes')
-    setFormIsValid(
-      enteredEmail.includes("@") && enteredPassword.trim().length > 6
-    );
-    // firstDependencies or seconedDependencies or  thirdDependencies is changed 
-  }, [setFormIsValid, enteredEmail, enteredPassword]);
+    
+     const validityTimer = setTimeout(()=>{
+      console.log('checking form validaty')
+      setFormIsValid(
+        enteredEmail.includes("@") && enteredPassword.trim().length > 6
+      );    
+    },400)
+    
+    return ()=>{
+      console.log('cleaning up')
+      clearTimeout(validityTimer)
+      
+    }
+  
+    // firstDependencyor seconedDependency or  thirdDependency is changed 
+  }, [ enteredEmail , enteredPassword]);
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
@@ -25,6 +35,7 @@ const Login = (props) => {
 
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
+    
 
   };
 
